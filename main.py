@@ -1,8 +1,9 @@
 import tkinter as tk
-from flatpak import applications, run
 from typing import List
 import logging
+from argparse import ArgumentParser
 from resources import icon_path
+from flatpak import applications, run
 
 
 class FlatRunner(tk.Frame):
@@ -76,10 +77,10 @@ if __name__ == '__main__':
     root.resizable(0, 0)
 
     try:
-        root.iconbitmap(icon_path)
+        root.tk.call('wm', 'iconphoto', root._w, tk.PhotoImage(file=icon_path))
     except Exception as err:
         logging.error(err)
-        pass  # we don't care about icon
+        pass  # icon is not so important ...
 
     app = FlatRunner(master=root)
 
